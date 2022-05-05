@@ -1,0 +1,44 @@
+###############################################################################
+# Platform-dependent parameters
+CPP	= g++
+GPP = /usr/local/bin/g++-11
+CFLAGS	= -O3 --std=c++17
+EIGEN = -I/usr/local/include/eigen3
+MYINC = -I/usr/local/include
+LTBB = -ltbb
+LDPATH = -L/usr/local/lib
+GMP = -lgmp
+###############################################################################
+
+TARGETS	=	s3di s3soi s3sample s3cs s3ct s3op
+
+default: clean
+
+s3di: s3discrepancy.cc
+	$(GPP) -o $@ $< $(CFLAGS) $(EIGEN) $(MYINC) $(LDPATH) $(LTBB)
+
+s3pc: s3pc.cc
+	$(GPP) -o $@ $< $(CFLAGS) $(EIGEN) $(MYINC) $(LDPATH) $(LTBB)
+
+s3sample: s3sample.cc
+	$(CPP) -o $@ $< $(CFLAGS) $(EIGEN)
+
+s3cs: s3cs.cc
+	$(CPP) -o $@ $< $(CFLAGS) $(EIGEN) $(GMP)
+
+s3ct: s3ct.cc
+	$(CPP) -o $@ $< $(CFLAGS) $(EIGEN) $(GMP)
+
+s3op: s3op.cc
+	$(CPP) -o $@ $< $(CFLAGS) $(EIGEN) $(GMP)
+
+s3soi: s3soi.cc rotutils.o
+	$(CPP) -o $@ $^ $(CFLAGS) $(EIGEN)
+
+rotutils.o: SOI/rotutils.c
+	$(CPP) -c $< -O3
+	
+clean:
+	/bin/rm -f *.o *~
+	/bin/rm -f $(TARGETS) core 
+
