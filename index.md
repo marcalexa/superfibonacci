@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+## Super-Fibonacci Spirals
 
-You can use the [editor on GitHub](https://github.com/marcalexa/superfibonacci/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+[Marc Alexa](https://www.cg.tu-berlin.de/team/prof-dr-marc-alexa/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Abstract
 
-### Markdown
+Super-Fibonacci spirals are an extension of Fibonacci spirals, enabling fast generation of an arbitrary but fixed number of 3D orientations. The algorithm is simple and fast. A comprehensive evaluation comparing to other methods shows that the generated sets of orientations have low discrepancy, minimal spurious components in the power spectrum, and almost identical Voronoi volumes. This makes them useful for a variety of applications, in particular Monte Carlo sampling. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Documents
 
-```markdown
-Syntax highlighted code block
+[CVPR paper](https://github.com/marcalexa/superfibonacci/docs/superfib_cvpr.pdf), includes supplemental material
 
-# Header 1
-## Header 2
-### Header 3
+### Code
 
-- Bulleted
-- List
+See the repository. Dependencies: Eigen, CLI11. [Code from Julie Mitchell](https://mitchell-web.ornl.gov/SOI/index.php) is included (copyrighted  but free for commercial use).
 
-1. Numbered
-2. List
+Uses old school makefile to allow compiling sequential and parallel code with different complilers. On MacOS, clang generates faster seuqnetial code but still lacks support for C++17 standard parallelism. 
 
-**Bold** and _Italic_ and `Code` text
+### Data
 
-[Link](url) and ![Image](src)
-```
+See the repository
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Includes some data from Charles Karney. Complete data available on [github](https://github.com/cffk/orientation)
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/marcalexa/superfibonacci/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
