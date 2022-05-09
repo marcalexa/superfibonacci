@@ -8,7 +8,7 @@ Super-Fibonacci spirals are an extension of Fibonacci spirals, enabling fast gen
 
 ### Documents
 
-[CVPR paper](https://github.com/marcalexa/superfibonacci/docs/superfib_cvpr.pdf), includes supplemental material
+[CVPR paper](https://github.com/marcalexa/superfibonacci/files/8650030/superfib_cvpr.pdf), includes supplemental material
 
 ### Code
 
