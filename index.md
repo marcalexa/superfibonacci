@@ -12,13 +12,68 @@ Super-Fibonacci spirals are an extension of Fibonacci spirals, enabling fast gen
 
 ### Code
 
-See the repository. Dependencies: [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page), [CLI11](https://github.com/CLIUtils/CLI11). [Code from Julie Mitchell](https://mitchell-web.ornl.gov/SOI/index.php) is included (copyrighted  but free for commercial use).
+The main point of Super-Fibonacci sampling for generating rotations is that it is as simple as uniform random sampling but on par with more sophisticated methods. In pseudo-code, the procedure for generating *n* rotations represented as quaternions *q<sub>i</sub>* is:
+
+> For *i* in (0,...,*n*-1)
+> 1. *s* = *i* + 0.5
+> 2. r = sqrt(*s*/*n*)
+> 3. R = sqrt(1.0-*s*/*n*)
+> 4. &alpha; = (2&pi; * *s*)/&phi;
+> 5. &beta; = (2&pi; * *s*)/&psi;
+> 6. q<sub>i</sub> = (r sin α, r cos α, R sin β, R cos β)
+
+Here, &phi; and &psi; are two magic constants, for which I recommend the values &phi; = &radic;2 and &psi; = 1.533751168755204288118041...
+
+This pseudocode should be trivial to convert into actual code. Examples in python
+
+```
+phi = np.sqrt(2.0)
+psi = 1.533751168755204288118041
+
+Q = np.empty(shape=(n,4), dtype=float)
+
+for i in range(n):
+    s = i+0.5
+    r = np.sqrt(s/n)
+    R = np.sqrt(1.0-s/n)
+    alpha = 2.0 * np.pi * s / phi
+    beta = 2.0 * np.pi * s / psi
+    Q[i,0] = r*np.sin(alpha)
+    Q[i,1] = r*np.cos(alpha)
+    Q[i,2] = R*np.sin(beta)
+    Q[i,3] = R*np.cos(beta)
+```
+
+and C/C++ (including some minor optimizations for speed)
+
+```
+std::vector<std::array<double,4> > Q(n);
+
+double dn = 1.0 / (double)n;
+double mc0 = 1.0 / sqrt(2.0);
+double mc1 = 1.0 / 1.533751168755204288118041;
+
+for (int i = 0; i < n; i++)
+{
+    s = (double)i+0.5;
+    ab = 2.0 * M_PI * s;
+    alpha = ab * mc0;
+    beta = ab * mc1;
+    s *= dn;
+    r = sqrt(s);
+    R = sqrt(1.0-s);
+    Q[i][0] = r*sin(alpha);
+    Q[i][1] = r*cos(alpha);
+    Q[i][2] = R*sin(beta);
+    Q[i][3] = R*cos(beta);
+}
+```
+
+The repository contains more code, allowing to experiment with magic constants, genrate other distributions, and provides tools for analysis of the sampling. 
 
 Uses old school makefile to allow compiling sequential and parallel code with different complilers. On MacOS, clang generates faster sequeetial code but still lacks support for C++17 standard parallelism. 
 
 ### Data
 
-See the repository
-
-Includes some data from Charles Karney. Complete data available on [github](https://github.com/cffk/orientation)
+See the repository for precomputed sequences of various sampling strategies and shell scripts to generate more data or compare the sample sets. 
 
