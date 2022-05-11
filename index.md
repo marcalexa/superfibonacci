@@ -12,7 +12,7 @@ Super-Fibonacci spirals are an extension of Fibonacci spirals, enabling fast gen
 
 ### Code
 
-The main point of Super-Fibonacci sampling for generating rotations is that it is as simple as uniform random sampling but on par with more sophisticated methods. In pseudo-code, the procedure for generating *n* rotations represented as quaternions *q<sub>i</sub>* is:
+The main point of Super-Fibonacci sampling for generating rotations is that it is as simple as uniform random sampling but on par with more sophisticated methods in terms of the properties of the distribution. In pseudo-code, the procedure for generating *n* rotations represented as quaternions *q<sub>i</sub>* is:
 
 > For *i* in (0,...,*n*-1)
 > 1. *s* = *i* + 0.5
@@ -27,6 +27,8 @@ Here, &phi; and &psi; are two magic constants, for which I recommend the values 
 This pseudocode should be trivial to convert into actual code. Examples in python
 
 ```
+import numpy as np
+
 phi = np.sqrt(2.0)
 psi = 1.533751168755204288118041
 
@@ -71,7 +73,6 @@ for (int i = 0; i < n; i++)
 
 The repository contains more code, allowing to experiment with magic constants, genrate other distributions, and provides tools for analysis of the sampling. 
 
-Uses old school makefile to allow compiling sequential and parallel code with different complilers. On MacOS, clang generates faster sequeetial code but still lacks support for C++17 standard parallelism. 
 
 ### Data
 
