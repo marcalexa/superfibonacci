@@ -4,7 +4,7 @@ Fast, low discrepancy sampling of orientations.
 
 ### Erratum
 
-Super Fibonacci Spirals have no refinement property in the published version: The paper claims that a set of kn samples generated with Super-Fibonacci sampling contains the set for generated for n samples and, more generally, sets of m and n samples would have every k-th sample in common, where k is the gcd of m and n. This is not true. 
+Super Fibonacci Spirals, as described in the paper, have no simple refinement property: The paper claims that a set of kn samples generated with Super-Fibonacci sampling contains the set generated for n samples and, more generally, sets of m and n samples would have every k-th sample in common, where k is the gcd of m and n. This is not true. 
 
 ### Code
 
