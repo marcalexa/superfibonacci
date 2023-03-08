@@ -10,6 +10,10 @@ Super-Fibonacci spirals are an extension of Fibonacci spirals, enabling fast gen
 
 [CVPR paper](https://github.com/marcalexa/superfibonacci/files/8650030/superfib_cvpr.pdf), includes supplemental material
 
+### Erratum
+
+Super Fibonacci Spirals, as described in the paper, have no simple refinement property: The paper claims that a set of kn samples generated with Super-Fibonacci sampling contains the set generated for n samples and, more generally, sets of m and n samples would have every k-th sample in common, where k is the gcd of m and n. This is not true. 
+
 ### Code
 
 The main point of Super-Fibonacci sampling for generating rotations is that it is as simple as uniform random sampling but on par with more sophisticated methods in terms of the properties of the distribution. In pseudo-code, the procedure for generating *n* rotations represented as quaternions *q<sub>i</sub>* is:
