@@ -2,6 +2,10 @@
 
 Fast, low discrepancy sampling of orientations.
 
+### Erratum
+
+Super Fibonacci Spirals have no refinement property in the published version: The paper claims that a set of kn samples generated with Super-Fibonacci sampling contains the set for generated for n samples and, more generally, sets of m and n samples would have every k-th sample in common, where k is the gcd of m and n. This is not true. 
+
 ### Code
 
 [s3onlyfib.cc](src/s3onlyfib.cc) provides a minimal C++ implementation of Super-Fibonacci sampling without dependencies (apart from STL). It expects the number of samples as the sole command line parameter and outputs the rotations (as quaternions) to `stdout`. 
